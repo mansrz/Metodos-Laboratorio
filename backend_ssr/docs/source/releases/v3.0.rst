@@ -1,0 +1,82 @@
+========================================
+Oscar 3.0 release notes (in development)
+========================================
+
+:release: TBD
+
+Welcome to Oscar 3.0!
+
+.. contents::
+    :local:
+    :depth: 1
+
+.. _compatibility_of_3.0:
+
+Compatibility
+~~~~~~~~~~~~~
+
+
+.. _new_in_3.0:
+
+What's new in Oscar 3.0?
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Support has been added to the ``catalogue.Option`` model to define the
+  type of option. This is used by the ``AddToBasketForm`` to determine the appropriate form field to display for that
+  option in the add-to-cart form. Currently supported types are: text, integer, float, boolean, and date.
+
+  The ``type`` field on the ``Option`` model (previously used to denote whether the option is required)
+  has been repurposed to store the type of the option, and a new ``required`` field
+  has been added to denote whether the option is required. Projects that have forked the catalogue app will
+  need to generate custom migrations for these model field changes.
+  Projects should pay close attention to the data migration provided in
+  ``catalogue/migrations/0019_option_required.py`` for this change.
+
+
+Backwards incompatible changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- The ``StockRecord.price_excl_tax`` field has been renamed to ``StockRecord.price``.
+  Projects that have forked the ``partner`` app will need to generate their own migration
+  to rename this field.
+
+Bug fixes
+~~~~~~~~~
+
+
+Removal of deprecated features
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Several deprecated model fields have been removed in Oscar 3.0:
+
+   - ``order.Line.est_dispatch_date``
+   - ``order.Line.unit_cost_price``
+   - ``order.Line.unit_retail_price``
+   - ``partner.StockRecord.cost_price``
+   - ``partner.StockRecord.price_retail``
+
+  Oscar ships with migrations that remove these fields. If you want to continue using them,
+  please make sure you add the fields back to your forked app before migrating. Projects
+  that have forked the ``order`` and ``partner`` apps will need to generate their own
+  migrations to remove these fields.
+
+
+Minor changes
+~~~~~~~~~~~~~
+
+- Several models were updated to define a default ordering, to avoid issues with inconsistent ordering of
+  items in the dashboard and elsewhere. Database migrations are required for these changes.
+
+Dependency changes
+~~~~~~~~~~~~~~~~~~
+
+Python package dependencies:
+
+
+Javascript dependencies:
+
+
+.. _deprecated_features_in_2.0:
+
+Deprecated features
+~~~~~~~~~~~~~~~~~~~
