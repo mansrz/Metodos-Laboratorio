@@ -305,6 +305,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'oscarapi',
     'corsheaders',
+    #'subapi',
 ]
 
 # Add Oscar's custom auth backend so users can sign in using their email
@@ -439,3 +440,5 @@ except ImportError:
 
 CORS_ORIGIN_ALLOW_ALL = True
 OSCAR_PRODUCTS_PER_PAGE = 209
+OSCARAPI_OVERRIDE_MODULES = ["oscar.apigeneric"]
+
