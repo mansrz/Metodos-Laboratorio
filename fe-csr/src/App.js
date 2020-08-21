@@ -29,8 +29,8 @@ function App() {
       <Row>
         {products &&
           products.map(item => (
-            <Col>
-              <Product id={item.id} url={item.url} />
+            <Col md={3} key={item.id}>
+              <Product data={item} />
             </Col>
           ))}
       </Row>
