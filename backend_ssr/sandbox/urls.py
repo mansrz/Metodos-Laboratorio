@@ -9,6 +9,7 @@ from django.contrib.sitemaps import views
 from oscar.views import handler403, handler404, handler500
 
 from apps.sitemaps import base_sitemaps
+from oscarapi import urls as urlsoscarapi
 
 admin.autodiscover()
 
@@ -16,6 +17,8 @@ urlpatterns = [
     # Include admin as convenience. It's unsupported and only included
     # for developers.
     url(r'^admin/', admin.site.urls),
+    url(r'^api/', include(urlsoscarapi)),
+
 
     # i18n URLS need to live outside of i18n_patterns scope of Oscar
     url(r'^i18n/', include(django.conf.urls.i18n)),

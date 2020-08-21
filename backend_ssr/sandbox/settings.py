@@ -10,7 +10,7 @@ location = lambda x: os.path.join(
 
 DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1', '52.87.205.52'])
 
 EMAIL_SUBJECT_PREFIX = '[Oscar sandbox] '
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -142,6 +142,8 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -300,6 +302,9 @@ INSTALLED_APPS = [
     # 3rd-party apps that the sandbox depends on
     'django_extensions',
     'debug_toolbar',
+    'rest_framework',
+    'oscarapi',
+    'corsheaders',
 ]
 
 # Add Oscar's custom auth backend so users can sign in using their email
@@ -431,3 +436,6 @@ try:
     from settings_local import *
 except ImportError:
     pass
+
+CORS_ORIGIN_ALLOW_ALL = True
+OSCAR_PRODUCTS_PER_PAGE = 209

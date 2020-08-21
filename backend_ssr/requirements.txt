@@ -30,3 +30,4 @@ ipython>=7.12,<7.17
 
 # Country data
 pycountry>=19.8,<20.8
+django-oscar-api===2.0.2
